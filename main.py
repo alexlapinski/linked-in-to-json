@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+#
+# Ref/Source: https://chat.openai.com/share/71da41db-901f-40d1-a52b-c188c7167121
+#
 
 import re
 import json
