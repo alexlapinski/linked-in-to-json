@@ -14,7 +14,16 @@ def parse_company(lines: list[str]) -> dict[str, object]:
 
 def parse_position(lines: list[str]) -> dict[str, object]:
 
-    position_type = lines[1].split(' ')[-1].replace('(',"").replace(')', "")
+    position_line = lines[1]
+    
+    # If the line contains a '-' that seperates type/level
+    # If the line contains a '()' that may mean a type as well
+    contains_dash = re.search('-\s*(.*)', position_line)
+    contains_parens = re.search('\(\s*(.*)\)', position_line)
+
+    position_type = contains_dash.group(1) if contains_dash else \
+                        contains_parens.group(1) if contains_parens else \
+                            None
         
     # Extract position title, level and type
     position = re.search(r'(?:(Senior|Junior)/)?([\w\s]+)(?:\s-\s(.+))?', lines[1])
@@ -22,6 +31,10 @@ def parse_position(lines: list[str]) -> dict[str, object]:
     position_title = position.group(2).strip() if position is not None else None
     position_type = position_type if position_type is not None else position.group(3)
     
+    is_senior = re.search('senior', position_line, re.IGNORECASE)
+    if position_level is None and is_senior:
+        position_level = 'Senior'
+
     return {
                 "Title": position_title,
                 "Level": position_level,
