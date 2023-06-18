@@ -49,7 +49,31 @@ output_2 = """[{
   }]"""
 use_case_2 = (input_2, output_2)
 
-test_data = [use_case_1, use_case_2]
+input_3 = """Portrait Analytics
+Senior Software Engineer - Backend / DevOps
+Portrait Analytics
+United States (Remote)
+ Actively recruiting
+Posted 1w ago •  Easy Apply"""
+output_3 = """[{
+    "Company": {
+      "Full Name": "Portrait Analytics",
+      "Name": "Portrait Analytics",
+      "Hiring Status": "Actively recruiting"
+    },
+    "Position": {
+      "Title": "Senior Software Engineer",
+      "Level": "Senior",
+      "Type": "Backend / DevOps"
+    },
+    "Location": {
+      "Country": "United",
+      "Type": "Remote"
+    }
+  }]"""
+use_case_3 = (input_3, output_3)
+
+test_data = [use_case_1, use_case_2, use_case_3]
 
 @pytest.mark.parametrize("input_text, json_string", test_data)
 def test_process_text(input_text, json_string):
