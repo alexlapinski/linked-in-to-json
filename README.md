@@ -33,3 +33,11 @@ cat job_postings.txt | ./main.py > parsed_job_postings.json
 ```
 
 This will save the parsed JSON to the ```parsed_job_postings.json``` file.
+
+
+
+## Tests
+
+```bash
+pipenv run pytest -vv --diff-width=60
+```
