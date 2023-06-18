@@ -2,7 +2,7 @@ import sys
 import json
 import re
 
-def parse_company(lines: list[str]):
+def parse_company(lines: list[str]) -> dict[str, object]:
     company_name_full = lines[0]
     company_name_short = lines[2]
     hiring_status = None if 'Actively recruiting' not in lines[4] else 'Actively recruiting'
@@ -12,7 +12,7 @@ def parse_company(lines: list[str]):
                 "Hiring Status": hiring_status,
             }
 
-def parse_position(lines: list[str]):
+def parse_position(lines: list[str]) -> dict[str, object]:
 
     position_type = lines[1].split(' ')[-1].replace('(',"").replace(')', "")
         
@@ -28,7 +28,7 @@ def parse_position(lines: list[str]):
                 "Type": position_type,
             }
 
-def parse_location(lines: list[str]):
+def parse_location(lines: list[str]) -> dict[str, object]:
     raw_country = lines[3]
     country = None if raw_country is None else raw_country.split(' ')[0]
 
@@ -38,7 +38,7 @@ def parse_location(lines: list[str]):
                 "Type": location_type
             }
 
-def process_text(text: str):
+def process_text(text: str) -> list[dict[str, object]]:
     chunks = text.strip().split('\n\n')
 
     results = []
@@ -49,9 +49,7 @@ def process_text(text: str):
             "Company": parse_company(lines),
             "Position": parse_position(lines),
             "Location": parse_location(lines)
-        }
-
-        
+        }       
 
         results.append(job_data)
 
