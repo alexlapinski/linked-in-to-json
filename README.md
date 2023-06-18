@@ -2,7 +2,8 @@
 Takes a chunk of saved jobs text copied from raw text of logged in to linked in & outputs structured JSON
 
 ## Attribution
-Most or all of this was generated via ChatGPT4 (see link in ```main.py```)
+Most or all of this was generated via ChatGPT4.
+https://chat.openai.com/share/71da41db-901f-40d1-a52b-c188c7167121
 
 ## Setup
 Now, you can make the Python script executable with the chmod command:
